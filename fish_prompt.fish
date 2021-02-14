@@ -4,7 +4,14 @@
 # * Git branch and dirty state (if inside a git repo)
 
 function _git_branch_name
-  echo (command git symbolic-ref HEAD 2> /dev/null | sed -e 's|^refs/heads/||')
+  set -l branch (command git symbolic-ref HEAD 2> /dev/null | sed -e 's|^refs/heads/||')
+  and [ -n "$branch" ]
+  and echo $branch
+  and return
+
+  set -l tag (command git describe --tags --exact-match 2> /dev/null)
+  and [ -n "$tag" ]
+  and echo "tag/$tag"
 end
 
 function _git_dirty
