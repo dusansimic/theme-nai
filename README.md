@@ -9,3 +9,4 @@ A minimalist fish theme which displays git branch and status information.
 
 * Truncated CWD (just the current folder name)
 * Git branch and dirty state (if applicable)
+* Git tag if there is no branch
